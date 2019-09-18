@@ -9,15 +9,17 @@ import Home from './home';
 import Services from './services';
 
 const App = () => (
-    <div className="container">
-        <Header />
+    <div className="app">
+        <div className="container">
+            <Header />
 
-        <Route path="/about" component={About}/>
-        <Route path="/contact" component={Contact}/>
-        <Route path="/" exact component={Home}/>
-        <Route path="/Services" component={Services}/>
+            <Route path="/about" component={About}/>
+            <Route path="/contact" component={Contact}/>
+            <Route path="/" exact component={Home}/>
+            <Route path="/Services" component={Services}/>
 
-        <Footer />
+            <Footer />
+        </div>
     </div>
 );
 

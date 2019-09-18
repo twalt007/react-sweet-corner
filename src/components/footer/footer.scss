@@ -1,0 +1,29 @@
+.footer-container{
+    height: 80px;
+    padding-top: 20px;
+    background-color: #06b4af;
+    color: ivory;
+    
+    >*{
+        width: 33%;
+        height: 100%;
+        float: left;
+        text-align:center;
+        position: relative;
+        
+    }
+
+    .decDots{
+        background-repeat: no-repeat;
+        top: 0;
+        left: 30px;
+    }
+    .copyright{
+        font-size: .8em;
+        top: 40px
+    }
+    .phone{
+        transform: translate(0,25%)
+    }
+
+}

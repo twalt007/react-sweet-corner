@@ -1,7 +1,4 @@
-@font-face{
-    font-family: allura;
-    src: url('../../assets/fonts/Allura-Regular.ttf');
-}
+
 .header-container{
     text-align: center;
     
@@ -14,8 +11,8 @@
     }
     .slogan{
         font-family: allura;
-        font-size: 1.5em;
-        line-height: 3em;
+        font-size: 1.5rem;
+        line-height: 3rem;
         border-bottom: 24px solid #754b23;
         font-weight: 500;
     }

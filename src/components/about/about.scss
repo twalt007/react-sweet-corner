@@ -1,28 +1,30 @@
-div{
-    font-size: 0.95rem;
-    text-align: justify;
-    text-justify: inter-word;
-    margin: 1rem 0;
-}
-.about-h4{
-    margin-top:0rem;
-    margin-bottom:1rem;
-}
-.about-tagline{
-    font-family: allura;
-    font-size: 2rem;
-    margin:1rem auto;
-}
-.about-strips{
-    height:100%;
-    background-size:contain;
-}
-.about-dots{
-    position: absolute;
-    top: 37%;
-    right: 140%
-}
-.frosting{
-    width: 1000px;
-    padding: 0 14px;
+.about-container{
+    div{
+        font-size: 0.95rem;
+        text-align: justify;
+        text-justify: inter-word;
+    }
+    .text{
+        padding-left: 22px;
+    }
+    h4{
+        margin-top:1rem;
+    }
+    .tagline{
+        font-family: allura;
+        font-size: 2rem;
+        margin:1rem auto;
+    }
+    .strips{
+        height:100%;
+        background-size:contain;
+    }
+    .dots{
+        position: absolute;
+        top: 20%;
+        left: 30%;
+    }
+    .frosting{
+        margin: auto;
+    }
 }

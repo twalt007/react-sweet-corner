@@ -2,27 +2,22 @@
     height: 80px;
     background-color: #06b4af;
     color: ivory;
-    
-    >*{
-        width: 33%;
-        height: 100%;
-        float: left;
-        text-align:center;
+    .row{
         position: relative;
-        
+        top: 20px;
     }
-
     .decDots{
-        background-repeat: no-repeat;
-        top: 0;
-        left: 30px;
+        position: relative;
+        right: 70px;
     }
     .copyright{
+        position: relative;
         font-size: .8rem;
-        top: 30px
+        top: 30px;
     }
     .phone{
-        transform: translate(0,12%)
+        position: relative;
+        top: 10px;
     }
     
 

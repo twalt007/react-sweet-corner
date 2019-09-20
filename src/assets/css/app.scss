@@ -10,13 +10,16 @@
     margin: 0 auto 0;
     font-size: 100%;
 
-    .center {
-        text-align: center;
-    }
     .container {
-        margin: 0 auto 0;
-        width: 1000px;
-        font-size: 1em;    
+        font-size: 1em;
+        text-align: center; 
+        padding: 0;   
+    }
+    .text{
+        margin: 1rem 0;
     }
 }
 
+// *{
+//     border: 1px solid red;
+// }

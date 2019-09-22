@@ -6,18 +6,26 @@ import ProductItem from './product_item';
 import {Row} from 'react-bootstrap';
 
 class Products extends Component{
-    constructor(props){
-        super(props)
-
-    }
+    
     componentDidMount(e){
         this.props.getAllProducts();
     }
+
+    goToDetails(id){
+        this.props.history.push(`/products/${id}`);
+    }
+
     render(){
         const {products} = this.props;
         console.log(products)
         const productList = products.map((product,index)=>{
-            return <ProductItem {...product} key={product.id} />
+            return (
+                <ProductItem 
+                    key={product.id} 
+                    {...product} 
+                    goToDetails={this.goToDetails.bind(this,product.id)}
+                />
+            );
         });
         return(
             <div className="products-container">

@@ -5,7 +5,6 @@ import {Col} from 'react-bootstrap';
 
 const productItem = (props)=> {
     const money = props.cost;
-    console.log("productItem props", money);
     const {caption, cost, name, thumbnail} = props;
     return (
         <Col md={4} sm={6} className="product-item" onClick={props.goToDetails}>

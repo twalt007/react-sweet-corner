@@ -15,3 +15,18 @@ export const getAllProducts = () => async dispatch => {
         console.log("Error getting all products", error);
     }
 }
+
+export const getProductDetails = (productId) => async dispatch => {
+    console.log("ProductID",productId);
+    try{
+        const resp = await axios.get(`${BASE_URL}/api/products/${productId
+        }`);
+
+        dispatch({
+            type: types.GET_PRODUCT_DETAILS,
+            product: resp.data
+        })
+    } catch(error){
+        console.log("Error getting product detials", error);
+    }
+}

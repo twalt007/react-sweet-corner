@@ -9,6 +9,7 @@ import Header from './header';
 import Home from './home';
 import Services from './services';
 import Products from './products';
+import ProductDetails from './products/product_details';
 
 const App = () => (
     <div className="app">
@@ -16,10 +17,11 @@ const App = () => (
             <Header />
 
             <Route path="/about" component={About}/>
-            <Route path="/products" component={Products}/>
+            <Route path="/products" exact component={Products}/>
             <Route path="/contact" component={Contact}/>
             <Route path="/" exact component={Home}/>
             <Route path="/Services" component={Services}/>
+            <Route path="/products/:product_id" component={ProductDetails} />
 
             <Footer />
         </div>

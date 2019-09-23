@@ -1,7 +1,6 @@
 import React from "react";
 import './footer.scss';
-import {Col} from 'react-bootstrap';
-import {Row} from 'react-bootstrap';
+import {Col, Row} from 'react-bootstrap';
 import footerDots from "../../assets/images/images/dots-footer.png"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faPhone} from '@fortawesome/free-solid-svg-icons';

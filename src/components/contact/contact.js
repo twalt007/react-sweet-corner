@@ -3,8 +3,7 @@ import {Field, reduxForm} from 'redux-form';
 import './contact.scss';
 import ContactForm from './contact_form'
 import Schedule from '../general/schedule/schedule';
-import {Col} from 'react-bootstrap';
-import {Row} from 'react-bootstrap';
+import {Col, Row} from 'react-bootstrap';
 import upDots from "../../assets/images/images/up-dots.png"
 import downDots from "../../assets/images/images/down-dots.png"
 

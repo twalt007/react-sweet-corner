@@ -31,17 +31,13 @@
 .details-container{
     margin: 32px;
     text-align:left;
-    h1, h4{
+    vertical-align: center;  
+    .product-title, h4{
         font-weight: 600;
     }
     .image{
-        width: 375px;
+        width: 100%;
         border-radius: 25px
-    }
-    .content{
-        position: absolute;
-        vertical-align: center; 
-        margin: 30px;       
     }
     .tagline{
         font-family: allura;
@@ -52,4 +48,39 @@
         font-weight: 600;
         text-align: right;
     }
+    .cart-content{
+        font-weight: 600;
+        font-size: 1.5rem;
+        .cart-title{
+            font-size: default;
+        }
+        .cart-functions{
+            position: absolute;
+            right: 0px;
+        }
+        .cart-functions>*{
+            display: inline-block;
+            margin: 5px;
+            text-align: center;
+        }
+        .button {
+            background-color: #06b4af;
+            border: none;
+            color: white;
+            text-decoration: none;           
+          }
+          .increase, .decrease {
+              width: 50px;
+          }
+          .quantity{
+            background-color: lightgray;
+            width: 50px;
+          }
+          .add{
+              padding: 10px 5px;
+              margin: 0 20px;
+          }
+    }
+    
 }
+

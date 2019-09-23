@@ -1,7 +1,6 @@
 import React from "react";
 import './services.scss';
-import {Col} from 'react-bootstrap';
-import {Row} from 'react-bootstrap';
+import {Col, Row} from 'react-bootstrap';
 import strips from "../../assets/images/images/strips1.png";
 import dots from "../../assets/images/images/dots-box1.png";
 import displayed from "../../assets/images/images/box2.png"

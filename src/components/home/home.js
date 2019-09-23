@@ -1,7 +1,6 @@
 import React from "react";
 import './home.scss';
-import {Col} from 'react-bootstrap';
-import {Row} from 'react-bootstrap';
+import {Col, Row} from 'react-bootstrap';
 import strips from '../../assets/images/images/strips2.png';
 import dots from '../../assets/images/images/dots-box2.png';
 import bottomCupcakes from '../../assets/images/images/cupcakes.png'

@@ -1,15 +1,17 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {getProductDetails} from '../../actions'
+import {getProductDetails, clearProductDetails} from '../../actions'
 import Money from '../general/money'
-import {Row} from 'react-bootstrap';
-import {Col} from 'react-bootstrap';
+import {Row, Col} from 'react-bootstrap';
 
 class ProductDetails extends Component{
     
     componentDidMount(){
         const {getProductDetails, match: {params}} = this.props;
         getProductDetails(params.product_id);
+    }
+    componentWillUnmount(){
+        this.props.clearProductDetails();
     }
 
     render(){
@@ -50,5 +52,6 @@ function mapStateToProps(state){
 }
 
 export default connect(mapStateToProps,{
-    getProductDetails:getProductDetails
+    getProductDetails:getProductDetails,
+    clearProductDetails:clearProductDetails
 })(ProductDetails);

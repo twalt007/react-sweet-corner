@@ -5,13 +5,37 @@ import Money from '../general/money'
 import {Row, Col} from 'react-bootstrap';
 
 class ProductDetails extends Component{
-    
+    constructor(props){
+        super(props);
+
+        this.state={
+            quantity: 1
+        }
+    }
     componentDidMount(){
         const {getProductDetails, match: {params}} = this.props;
         getProductDetails(params.product_id);
     }
     componentWillUnmount(){
         this.props.clearProductDetails();
+    }
+    incrementQuantity(){
+        let currentQuantity = this.state.quantity;
+        this.setState({
+            quantity: currentQuantity+1
+        });
+    }
+    decrementQuantity(){
+        let currentQuantity = this.state.quantity;
+        if (currentQuantity !==1){
+            this.setState({
+                quantity: currentQuantity-1
+            });
+        }        
+    }
+    handleAddToCart(details){
+        let currentQuantity = this.state.quantity;
+        console.log(`Add ${currentQuantity} items to cart, with product ID: ${details.id}`)
     }
 
     render(){
@@ -30,13 +54,23 @@ class ProductDetails extends Component{
                         </Col>
                         <Col md={7} sm={12}>
                             <div className="content">
-                                <h1>{details.name}</h1>
-                                <div className="tagline">{details.caption}</div>
-                                <h4>Description</h4>
-                                <div>{details.description}</div>
-                                <Money number={details}/>
-                            </div>
-                            
+                                <div className="detail-content">
+                                    <h1 className="product-title">{details.name}</h1>
+                                    <div className="tagline">{details.caption}</div>
+                                    <h4>Description</h4>
+                                    <div>{details.description}</div>
+                                    <Money number={details}/>
+                                </div>
+                                <div className="cart-content">
+                                    <h4 className="cart-title">Quantity</h4>
+                                    <div className="cart-functions">
+                                        <button className="button decrease" onClick={this.decrementQuantity.bind(this)}>-</button>
+                                        <div className="quantity" >{this.state.quantity}</div>
+                                        <button className="button increase" onClick={this.incrementQuantity.bind(this)}>+</button>                                   
+                                        <button className="button add" onClick={this.handleAddToCart.bind(this,details)}>Add To Cart</button>
+                                    </div>                                    
+                                </div>
+                            </div>                            
                         </Col>
                     </Row>
                 </div>
@@ -47,7 +81,6 @@ class ProductDetails extends Component{
 };
 
 function mapStateToProps(state){
-    console.log("mapStateToProps",state);
     return {details: state.products.details}
 }
 

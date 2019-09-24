@@ -19,8 +19,23 @@ class ProductDetails extends Component{
     componentWillUnmount(){
         this.props.clearProductDetails();
     }
-    imcrementQuantity(){
-        
+    incrementQuantity(){
+        let currentQuantity = this.state.quantity;
+        this.setState({
+            quantity: currentQuantity+1
+        });
+    }
+    decrementQuantity(){
+        let currentQuantity = this.state.quantity;
+        if (currentQuantity !==1){
+            this.setState({
+                quantity: currentQuantity-1
+            });
+        }        
+    }
+    handleAddToCart(details){
+        let currentQuantity = this.state.quantity;
+        console.log(`Add ${currentQuantity} items to cart, with product ID: ${details.id}`)
     }
 
     render(){
@@ -49,10 +64,10 @@ class ProductDetails extends Component{
                                 <div className="cart-content">
                                     <h4 className="cart-title">Quantity</h4>
                                     <div className="cart-functions">
-                                        <button className="button decrease">-</button>
-                                        <div className="quantity">{this.state.quantity}</div>
-                                        <button className="button increase">+</button>                                   
-                                        <button className="button add">Add To Cart</button>
+                                        <button className="button decrease" onClick={this.decrementQuantity.bind(this)}>-</button>
+                                        <div className="quantity" >{this.state.quantity}</div>
+                                        <button className="button increase" onClick={this.incrementQuantity.bind(this)}>+</button>                                   
+                                        <button className="button add" onClick={this.handleAddToCart.bind(this,details)}>Add To Cart</button>
                                     </div>                                    
                                 </div>
                             </div>                            

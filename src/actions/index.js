@@ -17,7 +17,6 @@ export const getAllProducts = () => async dispatch => {
 }
 
 export const getProductDetails = (productId) => async dispatch => {
-    console.log("ProductID",productId);
     try{
         const resp = await axios.get(`${BASE_URL}/api/products/${productId
         }`);
@@ -34,5 +33,27 @@ export const getProductDetails = (productId) => async dispatch => {
 export const clearProductDetails = () => {
     return{
         type: types.CLEAR_PRODUCT_DETAILS,
+    }
+}
+
+export const addItemToCart = (productID,quantity) => async dispatch => {
+    try{
+        const cartToken = localStorage.getItem('sc-cart-token');
+        const axiosConfig = {
+            headers: {
+                'X-Cart-Token': cartToken
+            }
+        }
+        const resp = await axios.post(`${BASE_URL}/api/cart/items/${productID}`,{
+            quantity: quantity
+        },axiosConfig);
+        localStorage.setItem('sc-cart-token', resp.data.cartToken);
+
+        dispatch({
+            type: types.ADD_ITEM_TO_CART,
+            cartTotal: resp.data.total
+        })
+    }catch (error){
+        console.log("Error adding item to cart", error)
     }
 }

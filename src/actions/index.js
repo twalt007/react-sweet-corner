@@ -71,6 +71,23 @@ export const getActiveCart = () => async dispatch => {
             cart: resp.data
         })
     }catch (error){
-        console.log("getActiveCart error:", error)
+        console.log("getActiveCart error: ", error)
+    }
+}
+export const getCartTotals = () => async dispatch => {
+    try{
+        const cartToken = localStorage.getItem('sc-cart-token');
+        const axiosConfig = {
+            headers: {
+                'X-Cart-Token': cartToken
+            }
+        }
+        const resp = await axios.get(`${BASE_URL}/api/cart/totals`,axiosConfig);
+        dispatch({
+            type: types.GET_CART_TOTALS,
+            total: resp.data.total
+        })
+    }catch (error){
+        console.log("Error getting cart totals: ", error)
     }
 }

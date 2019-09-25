@@ -7,7 +7,7 @@ import {Row} from 'react-bootstrap';
 
 class Products extends Component{
     
-    componentDidMount(e){
+    componentDidMount(){
         this.props.getAllProducts();
     }
 

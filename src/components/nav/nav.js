@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './nav.scss';
+import CartWidget from "./cart_widget"
 
 export default props => {
     return (
@@ -20,6 +21,7 @@ export default props => {
             <li>
                 <Link to="/contact">Contact</Link>
             </li>
+            <CartWidget/>
         </ul>
     );
 }

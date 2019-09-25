@@ -57,3 +57,20 @@ export const addItemToCart = (productID,quantity) => async dispatch => {
         console.log("Error adding item to cart", error)
     }
 }
+export const getActiveCart = () => async dispatch => {
+    try{
+        const cartToken = localStorage.getItem('sc-cart-token');
+        const axiosConfig = {
+            headers: {
+                'X-Cart-Token': cartToken
+            }
+        }
+        const resp = await axios.get(`${BASE_URL}/api/cart`,axiosConfig)
+        dispatch({
+            type: types.GET_ACTIVE_CART,
+            cart: resp.data
+        })
+    }catch (error){
+        console.log("getActiveCart error:", error)
+    }
+}

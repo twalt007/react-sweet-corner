@@ -66,6 +66,7 @@ export const getActiveCart = () => async dispatch => {
             }
         }
         const resp = await axios.get(`${BASE_URL}/api/cart`,axiosConfig)
+        console.log("getative cart", resp)
         dispatch({
             type: types.GET_ACTIVE_CART,
             cart: resp.data
@@ -83,6 +84,7 @@ export const getCartTotals = () => async dispatch => {
             }
         }
         const resp = await axios.get(`${BASE_URL}/api/cart/totals`,axiosConfig);
+        console.log("response",resp)
         dispatch({
             type: types.GET_CART_TOTALS,
             total: resp.data.total

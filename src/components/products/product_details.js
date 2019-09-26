@@ -4,6 +4,7 @@ import {getProductDetails, clearProductDetails, addItemToCart} from '../../actio
 import Money from '../general/money'
 import {Row, Col} from 'react-bootstrap';
 
+
 class ProductDetails extends Component{
     constructor(props){
         super(props);
@@ -33,9 +34,10 @@ class ProductDetails extends Component{
             });
         }        
     }
-    handleAddToCart(details){
+    async handleAddToCart(details){
         let currentQuantity = this.state.quantity;
-        this.props.addItemToCart(details.id,currentQuantity)
+        await this.props.addItemToCart(details.id,currentQuantity)
+        this.props.history.push('/cart')
     }
 
     render(){
@@ -59,7 +61,7 @@ class ProductDetails extends Component{
                                     <div className="tagline">{details.caption}</div>
                                     <h4>Description</h4>
                                     <div>{details.description}</div>
-                                    <Money number={details}/>
+                                    <Money cost={details.cost}/>
                                 </div>
                                 <div className="cart-content">
                                     <h4 className="cart-title">Quantity</h4>

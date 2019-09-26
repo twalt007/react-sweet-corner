@@ -16,7 +16,8 @@ class Cart extends Component{
     totals = () => {
         const {cost,items} = this.props.cartItems.total;
         return (
-            <div>
+            <div className="totals">
+                <div className="title">Cart Total:</div>
                 <div className="total-quantity">{items}</div>
                 <div className="total-cost"><Money cost={cost} /></div>
             </div>
@@ -57,8 +58,7 @@ class Cart extends Component{
                         {cartList}
                     </tbody>
                 </Table>
-                <div className="grand-Total">
-                    <div className="title">Cart Total:</div>
+                <div className="grand-total">
                     {this.props.cartItems.total ? this.totals() : ""}
                 </div>
                 <Link className="guest-checkout" to="/checkout/guest">Checkout as Guest</Link>

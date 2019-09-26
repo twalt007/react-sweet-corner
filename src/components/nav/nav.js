@@ -7,7 +7,7 @@ export default props => {
     return (
         <ul className="main-nav">
             <li>
-                <Link className="testing" to="/">Home</Link>
+                <Link to="/">Home</Link>
             </li>
             <li>
                 <Link to="/products">Products</Link>

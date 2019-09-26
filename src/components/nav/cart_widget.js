@@ -29,7 +29,6 @@ class CartWidget extends Component{
 } 
 
 function mapStateToProps(state){
-    console.log("cartTotals", state)
     return{
         total: state.cart.total
     }

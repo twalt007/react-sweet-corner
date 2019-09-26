@@ -4,7 +4,6 @@ import {Col} from 'react-bootstrap';
 
 
 const productItem = (props)=> {
-    const money = props.cost;
     const {caption, cost, name, thumbnail} = props;
     return (
         <Col md={4} sm={6} className="product-item" onClick={props.goToDetails}>
@@ -12,7 +11,7 @@ const productItem = (props)=> {
                 <h4 className="name">{name}</h4>
                 <img className="image" src={thumbnail['url']} alt={thumbnail['altText']} />
                 <div className="caption">{caption}</div>
-                <Money className="cost" number = {props}/>
+                <Money className="cost" cost = {cost}/>
             </div>
         </Col>
     )

@@ -24,7 +24,6 @@ class Schedule extends Component {
         }));
     }
     render(){
-        console.log("The state is: ", this.state)
         const timeList = this.state.schedule.map((timeInfo,index)=>{
             return (
                 <tr key={index} className="row">

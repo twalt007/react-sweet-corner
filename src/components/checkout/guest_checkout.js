@@ -1,15 +1,63 @@
 import React, {Component} from "react";
+import {Field, reduxForm} from 'redux-form';
+import Input from '../general/form/input';
 import "./checkout.scss"
 
 class GuestCheckout extends Component{
+    handleGuestCheckout(formValues){
+        console.log("Guest-checkout form values", formValues);
+        this.props.reset();
+    }
 
     render(){
-        return (
-            <div className="guest-checkout">
-                <h1 className="text">Guest Checkout</h1>
+        const {handleSubmit} = this.props;
+        return (            
+            <div className="guest-checkout-container">
+                <h2>Guest Checkout</h2>
+                <form className="form" onSubmit={handleSubmit(this.handleGuestCheckout.bind(this))}>
+                    <Field className="firstName" placeholder="First Name" name="firstName" component={Input}/>
+                    <Field className="lastName" placeholder="Last Name" name="lastName" component={Input}/>
+                    <Field className="email" placeholder="Email" name="email" type="email" component={Input}/>
+                    <div className="button">
+                        <button type="submit">Submit Order </button>
+                    </div>
+                </form>
             </div>
         )
     }
-
 }
-export default GuestCheckout;
+function validate(formValues){
+    const {firstName, lastName, email} = formValues;
+    const nameRegex=/^[A-Za-z]*/;
+    const emailRegex=/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+    const errors = {};
+
+    if (!firstName){
+        errors.firstName = "Please enter your first name.";
+    }else if (firstName.length <2) {
+        errors.firstName = 'First name must be at least 2 charcters long.';
+    }else if (!nameRegex.test(firstName)){
+        errors.firstName = 'Please enter a valid first name.';
+    }
+
+    if (!lastName){
+        errors.lastName = "Please enter your last name.";
+    }else if (lastName.length <2) {
+        errors.lastName = 'Last name must be at least 2 charcters long.';
+    }else if (!nameRegex.test(lastName)){
+        errors.lastName = 'Please enter a valid last name.';
+    }
+
+    if (!email){
+        errors.email = 'Please enter your email address.';
+    }else if(!emailRegex.test(email)){
+        errors.email = 'Please enter a valid email address. Example your_name@domain.com.';
+    }
+
+    return errors;
+}
+
+export default reduxForm({
+    form: 'guest-checkout',
+    validate: validate
+})(GuestCheckout);

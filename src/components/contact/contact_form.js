@@ -7,7 +7,7 @@ import '../general/form/form.scss'
 class ContactForm extends Component {
     handleFormSubmit(formValues){
         console.log('On submit contact form values', formValues);
-        // this.props.reset();
+        this.props.reset();
     }
 
 
@@ -32,7 +32,6 @@ class ContactForm extends Component {
     }
 }
 function validate(formValues){
-    console.log('im validating')
     const {name, email, phone, subject, message} = formValues;
     const twoWordsRegex = /(\w.+\s).+/
     const nameRegex=/^[A-Za-z]*/;

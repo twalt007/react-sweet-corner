@@ -2,10 +2,15 @@ import React, {Component} from "react";
 import {Field, reduxForm} from 'redux-form';
 import Input from '../general/form/input';
 import "./checkout.scss"
+import {connect} from "react-redux";
+import {createGuestOrder} from '../../actions'
 
 class GuestCheckout extends Component{
-    handleGuestCheckout(formValues){
-        console.log("Guest-checkout form values", formValues);
+    
+    async handleGuestCheckout(formValues){
+        const orderInfo = await this.props.createGuestOrder(formValues);
+        const redirectUrl = `/order/guest/${orderInfo.orderID}`
+        this.props.history.push(redirectUrl);
         this.props.reset();
     }
 
@@ -28,7 +33,7 @@ class GuestCheckout extends Component{
 }
 function validate(formValues){
     const {firstName, lastName, email} = formValues;
-    const nameRegex=/^[A-Za-z]*/;
+    const nameRegex=/^[A-Za-z]+$/;
     const emailRegex=/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
     const errors = {};
 
@@ -37,7 +42,7 @@ function validate(formValues){
     }else if (firstName.length <2) {
         errors.firstName = 'First name must be at least 2 charcters long.';
     }else if (!nameRegex.test(firstName)){
-        errors.firstName = 'Please enter a valid first name.';
+        errors.firstName = 'Please enter a valid first name. Name may be only one word long and not include spaces.';
     }
 
     if (!lastName){
@@ -45,7 +50,7 @@ function validate(formValues){
     }else if (lastName.length <2) {
         errors.lastName = 'Last name must be at least 2 charcters long.';
     }else if (!nameRegex.test(lastName)){
-        errors.lastName = 'Please enter a valid last name.';
+        errors.lastName = 'Please enter a valid last name. NAme may be only one word long and may not include spaces.';
     }
 
     if (!email){
@@ -57,7 +62,11 @@ function validate(formValues){
     return errors;
 }
 
-export default reduxForm({
+const ValidatedGuestCheckout = reduxForm({
     form: 'guest-checkout',
     validate: validate
 })(GuestCheckout);
+
+export default connect(null,{
+    createGuestOrder: createGuestOrder
+})(ValidatedGuestCheckout)

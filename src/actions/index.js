@@ -5,8 +5,11 @@ const BASE_URL = 'http://api.sc.lfzprototypes.com';
 
 export const getAllProducts = () => async dispatch => {
     try{
+        // dispatch({type: types.IS_FETCHING})
         const resp = await axios.get(BASE_URL+'/api/products');
-        
+        // if(resp){
+        //     dispatch({type: types.DONE_FETCHING})
+        // }
         dispatch({
             type: types.GET_ALL_PRODUCTS,
             products: resp.data.products
@@ -84,7 +87,7 @@ export const getCartTotals = () => async dispatch => {
             }
         }
         const resp = await axios.get(`${BASE_URL}/api/cart/totals`,axiosConfig);
-        console.log("response",resp)
+        console.log("get cart totals response",resp)
         dispatch({
             type: types.GET_CART_TOTALS,
             total: resp.data.total
@@ -93,3 +96,37 @@ export const getCartTotals = () => async dispatch => {
         console.log("Error getting cart totals: ", error)
     }
 }
+export const createGuestOrder = (guest) => async dispatch => {
+    try {
+        const cartToken = localStorage.getItem('sc-cart-token');
+        const axiosConfig = {
+            headers: {
+                'X-Cart-Token': cartToken
+            }
+        }
+        const data = {
+            email: guest.email,
+            firstName: guest.firstName,
+            lastName: guest.lastName
+        }
+        const resp = await axios.post(`${BASE_URL}/api/orders/guest`,data,axiosConfig);
+        console.log("create guest order response", resp);
+        localStorage.removeItem('sc-cart-token');
+        dispatch({
+            type: types.CREATE_GUEST_ORDER,
+            order: {
+                id: resp.data.id,
+                message: resp.data.message
+            }
+        })
+        return ({
+            email: guest.email,
+            orderID: resp.data.id
+        })
+    }catch (error){
+        console.log("Error with Guest Checkout", error);
+    }
+}
+
+
+//need to look into clearing the cart item from local host

@@ -17,6 +17,7 @@ class Products extends Component{
 
     render(){
         const {products} = this.props;
+        console.log("products", products);
         const productList = products.map((product,index)=>{
             return (
                 <ProductItem 

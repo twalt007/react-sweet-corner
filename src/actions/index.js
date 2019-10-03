@@ -87,7 +87,6 @@ export const getCartTotals = () => async dispatch => {
             }
         }
         const resp = await axios.get(`${BASE_URL}/api/cart/totals`,axiosConfig);
-        console.log("get cart totals response",resp)
         dispatch({
             type: types.GET_CART_TOTALS,
             total: resp.data.total
@@ -128,5 +127,21 @@ export const createGuestOrder = (guest) => async dispatch => {
     }
 }
 
+export const getGuestOrderDetails = (orderId,email) => async dispatch => {
+    try{
+        const resp = await axios.get(`${BASE_URL}/api/orders/guest/${orderId}`,{
+            params:{
+                email: email
+            }
+        });
+        console.log ("get guest order details resp: ", resp);
+        dispatch({
+            type: types.GET_GUEST_ORDER_DETAILS,
+            orderDetails: resp.data
+        })
+    }
+    catch(error){
+        console.log("get guest order details failed", error)
+    }
+}
 
-//need to look into clearing the cart item from local host

@@ -9,7 +9,7 @@ class GuestCheckout extends Component{
     
     async handleGuestCheckout(formValues){
         const orderInfo = await this.props.createGuestOrder(formValues);
-        const redirectUrl = `/order/guest/${orderInfo.orderID}`
+        const redirectUrl = `/orders/guest/${orderInfo.orderID}?email=${orderInfo.email}`
         this.props.history.push(redirectUrl);
         this.props.reset();
     }
